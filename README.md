@@ -3,7 +3,7 @@
 The goal of this code is to build a platform to control home equipment by the remote (like web or mobile/sms) access.
 
 Current implementation (v0.1) cover following functionalities:
-* Control over the relay modules using the web GUI - this allow appliances to be controlled using the web browser.
+* Control over the relays module using the web GUI - this allow appliances to be controlled using the web browser.
 * Temperature collector - DS1820 chip based sensor delivers the temperature history for the location.
 * Charts - sensors (like temperature, humidity or RPi input ports state) data visualization using charts.
 
