@@ -7,6 +7,11 @@ Current implementation (v0.1) cover following functionalities:
 * Temperature collector - DS1820 chip based sensor delivers the temperature history for the location.
 * Charts - sensors (like temperature, humidity or RPi input ports state) data visualization using charts.
 
+Here are some pics.
+![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/relays.jpg)
+![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/chart.jpg)
+![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/log.jpg)
+
 ##Hardware
 * RPi board
 * RPi compatible Relays board.
