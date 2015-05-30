@@ -1,0 +1,4 @@
+// the configured options and settings for RPiHome
+#define RPiHome_VERSION @RPiHome_VERSION_MAJOR@
+
+
