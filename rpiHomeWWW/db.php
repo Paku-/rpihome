@@ -1,11 +1,9 @@
 <?php
-// Enter Database connection details below, OR
-// leave these lines default and run setup.py.
-// eg; python setup.py OR ./setup.py
-$db_Host = 'localhost'; // Enter your db Server address here.
-$db_User = 'user'; // Enter your db Username here.
-$db_Password = 'pass'; // Enter your db Password here.
-$db_DataBase = 'rpihome'; // Enter your db Database here.
+// Enter Database connection details below:
+$db_Host = 'localhost'; 
+$db_User = 'user'; 
+$db_Password = 'pass'; 
+$db_DataBase = 'rpihome'; 
 
 try {
 	
