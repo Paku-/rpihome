@@ -2,6 +2,7 @@
 
 //open DB
 require_once ('db.php');
+require_once ('functions.php');
 
 // Raspberry Pi board revision.
 $pi_rev = '3'; // Enter your Raspberry Pi revision number here.

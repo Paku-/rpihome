@@ -16,11 +16,8 @@ if ($updateConfig > 0) {
 			':debugMode' => $debugModeTemp,
 			':disabledPins' => $showDisabledPinsTemp 
 	) );
-	if (! $qry_result) {
-		$message = '<pre>Invalid query: ' . $db->error . '</pre>';
-		$message .= '<pre>Whole query: ' . $query_update . '</pre>';
-		die ( $message );
-	}
+	
+	checkQueryResult($qry_result);	
 }
 
 // Select the only row.
@@ -29,11 +26,8 @@ $query = 'SELECT * FROM config WHERE configVersion = 1';
 $qry_result = $db->prepare ( $query );
 $qry_result->execute ();
 
-if (! $qry_result) {
-	$message = '<pre>Invalid query: ' . $db->error . '</pre>';
-	$message .= '<pre>Whole query: ' . $query . '</pre>';
-	die ( $message );
-}
+checkQueryResult($qry_result);
+
 
 // Config table has only ONE row to return.
 $row = $qry_result->fetch ( PDO::FETCH_ASSOC );

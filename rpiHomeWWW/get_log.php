@@ -20,11 +20,14 @@ $qry_result->execute ( array (
 		':id1' => $id1,
 		':id2' => $id2 
 ) );
-if (! $qry_result) {
-	$message = '<pre>Invalid query: ' . $db->error . '</pre>';
-	$message .= '<pre>Whole query: ' . $query . '</pre>';
-	die ( $message );
-}
+
+checkQueryResult($qry_result);
+
+//if (! $qry_result) {
+//	$message = '<pre>Invalid query: ' . $db->error . '</pre>';
+//	$message .= '<pre>Whole query: ' . $query . '</pre>';
+//	die ( $message );
+//}
 
 print "<a href=\"#\" onclick=\"showLog()\">Refresh</a>";
 

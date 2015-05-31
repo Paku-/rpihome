@@ -12,9 +12,6 @@ $column_whitelist = array (
 		'Enabled' 
 );
 
-// $sort = in_array($_GET['sort'], $sort_whitelist) ? $_GET['sort'] : 'BCM';
-// $field = in_array($_GET['field'], $sort_whitelist) ? $_GET['field'] : 'none';
-
 $id = isset ( $_GET ['id'] ) && is_numeric ( $_GET ['id'] ) ? $_GET ['id'] : 0;
 $sort = isset ( $_GET ['sort'] ) && in_array ( $_GET ['sort'], $column_whitelist ) ? $_GET ['sort'] : 'BCM';
 $field = isset ( $_GET ['field'] ) && in_array ( $_GET ['field'], $column_whitelist ) ? $_GET ['field'] : 'none';
@@ -29,6 +26,8 @@ try {
 		$qry_result = $db->prepare ( $query_update );
 		$qry_result->bindParam ( ':id', $id, PDO::PARAM_INT );
 		$qry_result->execute ();
+		checkQueryResult($qry_result);
+		
 	}
 	
 	// Select rows
@@ -40,6 +39,7 @@ try {
 	
 	$qry_result = $db->prepare ( $query );
 	$qry_result->execute ();
+	checkQueryResult($qry_result);
 	
 	// Refresh using current sort order.
 	print "<a href=\"#\" onclick=\"showPins('" . urlencode ( $sort ) . "')\">Refresh</a>";
