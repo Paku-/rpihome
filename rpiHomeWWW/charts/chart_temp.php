@@ -15,6 +15,7 @@
 <script type="text/javascript" src="./jqwidgets/jqxdata.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxdraw.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxchart.core.js"></script>
+<script type="text/javascript" src="./jqwidgets/jqxchart.rangeselector.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -77,7 +78,18 @@
 		                  angle: -90,
 		                  rotationPoint: 'topright',
 		                  offset: { x: 0, y: -60 }
-		            }						
+		            },
+
+                    rangeSelector: {
+                        serieType: 'area',
+                        padding: { /*left: 0, right: 0,*/ top: 20, bottom: 0 },
+                        // Uncomment the line below to render the selector in a separate container
+                        //renderTo: $('#selectorContainer'),
+                        backgroundColor: 'white',
+                        size: 150,
+                        gridLines: {visible: false},
+                    }
+		            
 						
 				},
               valueAxis:
@@ -86,7 +98,7 @@
                     title: { text: 'Temperature [°C]' },
                     tickMarks: { color: '#BCBCBC' }
                 },				
-			colorScheme: 'scheme04',
+			colorScheme: 'scheme05',
 			seriesGroups:
 				[
 					{
@@ -94,16 +106,23 @@
 						series: [
 								{ 
 									//emptyPointsDisplay: 'skip',
-									dataField: 'Temp', 
-									displayText: 'Temperature [°C]' 
+									dataField: 'Temp', displayText: 'Temperature [°C]' 
 
 									}								
 						  ]
 					}
 				]
 		};
-		// setup the chart
+		// setup the chart	
 		$('#jqxChart').jqxChart(settings);
+
+
+        //var chartInstance = $('#jqxChart').jqxChart('getInstance');
+        //first group and serie = 0,0
+        //var count = chartInstance.getItemsCount(0, 0);
+
+        //document.getElementById("debug").innerHTML = count;
+		
 	});
 </script>
 </head>
@@ -111,6 +130,8 @@
 <body>
 
 	<div id='jqxChart' style="width: 800px; height: 600px"></div>
+	   
+	<div id='debug' style="width: 800px; height: 600px"></div>    
 
 </body>
 
