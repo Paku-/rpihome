@@ -15,9 +15,7 @@
 <script type="text/javascript" src="./jqwidgets/jqxdata.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxdraw.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxchart.core.js"></script>
-<script type="text/javascript" src="./jqwidgets/jqxchart.api.js"></script>
-<script type="text/javascript" src="./jqwidgets/jqxrangeselector.js"></script>
-
+<script type="text/javascript" src="./jqwidgets/jqxchart.rangeselector.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -80,7 +78,18 @@
 		                  angle: -90,
 		                  rotationPoint: 'topright',
 		                  offset: { x: 0, y: -60 }
-		            }						
+		            },
+
+                    rangeSelector: {
+                        serieType: 'area',
+                        padding: { /*left: 0, right: 0,*/ top: 20, bottom: 0 },
+                        // Uncomment the line below to render the selector in a separate container
+                        //renderTo: $('#selectorContainer'),
+                        backgroundColor: 'white',
+                        size: 150,
+                        gridLines: {visible: false},
+                    }
+		            
 						
 				},
               valueAxis:
@@ -89,7 +98,7 @@
                     title: { text: 'Temperature [°C]' },
                     tickMarks: { color: '#BCBCBC' }
                 },				
-			colorScheme: 'scheme04',
+			colorScheme: 'scheme05',
 			seriesGroups:
 				[
 					{
@@ -97,8 +106,7 @@
 						series: [
 								{ 
 									//emptyPointsDisplay: 'skip',
-									dataField: 'Temp', 
-									displayText: 'Temperature [°C]' 
+									dataField: 'Temp', displayText: 'Temperature [°C]' 
 
 									}								
 						  ]
@@ -109,22 +117,11 @@
 		$('#jqxChart').jqxChart(settings);
 
 
-        var chartInstance = $('#jqxChart').jqxChart('getInstance');
+        //var chartInstance = $('#jqxChart').jqxChart('getInstance');
         //first group and serie = 0,0
-        var count = chartInstance.getItemsCount(0, 0);
+        //var count = chartInstance.getItemsCount(0, 0);
 
-        document.getElementById("debug").innerHTML = count;		
-		
-
-        // create jqxRangeSelector.
-        $("#rangeSelector").jqxRangeSelector({ width: 800, height: 10, min: 0, max: 100, range: { from: 10, to: 90 }, majorTicksInterval: 10, minorTicksInterval: 2 });
-
-        
- 		$('#rangeSelector').on('change', function () {
-     		//alert("You are changed the range");
-     		chartInstance.update();
- 		});        
-        
+        //document.getElementById("debug").innerHTML = count;
 		
 	});
 </script>
@@ -133,12 +130,7 @@
 <body>
 
 	<div id='jqxChart' style="width: 800px; height: 600px"></div>
-	
-	<div id='rangeSelector' style="width: 800px;">
-        <div id='rangeSelectorContent'>
-        </div>
-    </div>
-    
+	   
 	<div id='debug' style="width: 800px; height: 600px"></div>    
 
 </body>
