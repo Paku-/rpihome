@@ -15,8 +15,9 @@
 <script type="text/javascript" src="./jqwidgets/jqxdata.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxdraw.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxchart.core.js"></script>
+<script type="text/javascript" src="./jqwidgets/jqxchart.api.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxrangeselector.js"></script>
-<script type="text/javascript" src="./jqwidgets/jqxbuttons.js"></script>
+
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -108,12 +109,15 @@
 		$('#jqxChart').jqxChart(settings);
 
 
-        var chartInstance = $('#chartContainer').jqxChart('getInstance');
-        //var count = chartInstance.getItemsCount(0, 1);		
+        var chartInstance = $('#jqxChart').jqxChart('getInstance');
+        //first group and serie = 0,0
+        var count = chartInstance.getItemsCount(0, 0);
+
+        document.getElementById("debug").innerHTML = count;		
 		
 
         // create jqxRangeSelector.
-        $("#rangeSelector").jqxRangeSelector({ width: 600, height: 10, min: 0, max: 100, range: { from: 10, to: 90 }, majorTicksInterval: 10, minorTicksInterval: 1 });
+        $("#rangeSelector").jqxRangeSelector({ width: 800, height: 10, min: 0, max: 100, range: { from: 10, to: 90 }, majorTicksInterval: 10, minorTicksInterval: 2 });
 
         
  		$('#rangeSelector').on('change', function () {
@@ -134,6 +138,8 @@
         <div id='rangeSelectorContent'>
         </div>
     </div>
+    
+	<div id='debug' style="width: 800px; height: 600px"></div>    
 
 </body>
 
