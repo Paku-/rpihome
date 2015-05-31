@@ -15,6 +15,8 @@
 <script type="text/javascript" src="./jqwidgets/jqxdata.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxdraw.js"></script>
 <script type="text/javascript" src="./jqwidgets/jqxchart.core.js"></script>
+<script type="text/javascript" src="./jqwidgets/jqxrangeselector.js"></script>
+<script type="text/javascript" src="./jqwidgets/jqxbuttons.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -102,8 +104,24 @@
 					}
 				]
 		};
-		// setup the chart
+		// setup the chart	
 		$('#jqxChart').jqxChart(settings);
+
+
+        var chartInstance = $('#chartContainer').jqxChart('getInstance');
+        //var count = chartInstance.getItemsCount(0, 1);		
+		
+
+        // create jqxRangeSelector.
+        $("#rangeSelector").jqxRangeSelector({ width: 600, height: 10, min: 0, max: 100, range: { from: 10, to: 90 }, majorTicksInterval: 10, minorTicksInterval: 1 });
+
+        
+ 		$('#rangeSelector').on('change', function () {
+     		//alert("You are changed the range");
+     		chartInstance.update();
+ 		});        
+        
+		
 	});
 </script>
 </head>
@@ -111,6 +129,11 @@
 <body>
 
 	<div id='jqxChart' style="width: 800px; height: 600px"></div>
+	
+	<div id='rangeSelector' style="width: 800px;">
+        <div id='rangeSelectorContent'>
+        </div>
+    </div>
 
 </body>
 
