@@ -25,7 +25,7 @@
 				 { name: 'Time', type: 'date'},
 				 { name: 'Temp'}
 			],
-			url: 'chart_temp_data.php'
+			url: 'chart_temp_data.php?hours=48'
 		};		
 		
 	   var dataAdapter = new $.jqx.dataAdapter(source,
