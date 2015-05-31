@@ -1,6 +1,9 @@
 <?php
-header("Cache-Control: max-age=0,no-cache,no-store,post-check=0,pre-check=0, must-revalidate"); // HTTP/1.1
-header("Expires: Sat, 26 Jul 2014 05:00:00 GMT"); // Date in the past
+header( 'Expires: Sat, 26 Jul 1997 05:00:00 GMT' );
+header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
+header( 'Cache-Control: no-store, no-cache, must-revalidate' );
+header( 'Cache-Control: post-check=0, pre-check=0', false );
+header( 'Pragma: no-cache' ); 
 
 require_once 'set_config_vars.php';
 
