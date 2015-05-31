@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rexpfd>
+    <destination path="pku.192.168.1.145:/home/pi/paku/www"/>
+    <options createDirectoryStructure="false" createSelectedOnly="true" descriptionFilePath="/rpiHomeApp/rpihome.rexpfd" overWriteExistingFiles="false" reviewSynchronize="true" saveSettings="true"/>
+    <selectedElements>
+        <project name="rpiHomeWWW"/>
+    </selectedElements>
+</rexpfd>
