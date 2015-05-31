@@ -1,0 +1,7 @@
+rpiHomeWWW/charts/jqwidgets/* linguist-vendored
+rpiHomeWWW/charts/scripts/* linguist-vendored
+rpiHomeWWW/charts/styles/* linguist-vendored
+
+#jquery.js linguist-vendored=false
+#project-docs/* linguist-documentation
+#docs/formatter.rb linguist-documentation=false
