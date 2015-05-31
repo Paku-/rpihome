@@ -7,15 +7,24 @@ Current implementation (v0.1) cover following functionalities:
 * Temperature collector - DS1820 chip based sensor delivers the temperature history for the location.
 * Charts - sensors (like temperature, humidity or RPi input ports state) data visualization using charts.
 
-Here are some pics.
+Here are some GUI shots.
 ![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/relays.jpg)
+
 ![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/chart.jpg)
+
 ![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/log.jpg)
 
 ##Hardware
 * RPi board
 * RPi compatible Relays board.
 * DS1820 temperature sensor.
+
+![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/kit.jpg)
+
+![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/module.jpg)
+
+![alt tag](https://raw.github.com/Paku-/rpihome/master/screenshots/temp.jpg)
+
 
 ##Software
 Software platform consist of two main parts - the web server and a command line tool (board controller). SMS control module is a next developing step.
