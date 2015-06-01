@@ -77,8 +77,28 @@
 		            labels: {
 		                  angle: -90,
 		                  rotationPoint: 'topright',
-		                  offset: { x: 0, y: -60 }
+		                  offset: { x: 0, y: -30}
 		            },
+
+                    formatFunction: function (value, dataIndex) {
+
+                        var hours = value.getHours();
+                        var minutes = value.getMinutes();
+                        var seconds = value.getSeconds();
+
+                        if (hours < 10) 
+                         hours = '0' + hours;
+
+                        if (minutes < 10) 
+                         minutes = '0' + minutes;
+
+                        if (seconds < 10) 
+                         seconds = '0' + seconds;
+
+                        return hours + ":" + minutes + ":" + seconds;
+                                                                            
+                        
+                    },		            
 
                     rangeSelector: {
                         serieType: 'area',
@@ -106,7 +126,9 @@
 						series: [
 								{ 
 									//emptyPointsDisplay: 'skip',
-									dataField: 'Temp', displayText: 'Temperature [°C]' 
+									//legendFormatFunction: legendFormatFunction,
+									dataField: 'Temp', displayText: 'Temperature [°C]'
+			                        										 
 
 									}								
 						  ]

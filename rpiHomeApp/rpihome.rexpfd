@@ -3,6 +3,30 @@
     <destination path="pku.192.168.1.145:/home/pi/paku/www"/>
     <options createDirectoryStructure="false" createSelectedOnly="true" descriptionFilePath="/rpiHomeApp/rpihome.rexpfd" overWriteExistingFiles="false" reviewSynchronize="true" saveSettings="true"/>
     <selectedElements>
-        <project name="rpiHomeWWW"/>
+        <file path="/rpiHomeWWW/.buildpath"/>
+        <file path="/rpiHomeWWW/.gitignore"/>
+        <file path="/rpiHomeWWW/.project"/>
+        <file path="/rpiHomeWWW/config.php"/>
+        <file path="/rpiHomeWWW/db.php"/>
+        <file path="/rpiHomeWWW/functions.php"/>
+        <file path="/rpiHomeWWW/get_config.php"/>
+        <file path="/rpiHomeWWW/get_log.php"/>
+        <file path="/rpiHomeWWW/get_pins.php"/>
+        <file path="/rpiHomeWWW/get_status.php"/>
+        <file path="/rpiHomeWWW/index.php"/>
+        <file path="/rpiHomeWWW/log.php"/>
+        <file path="/rpiHomeWWW/pins.php"/>
+        <file path="/rpiHomeWWW/set_config_vars.php"/>
+        <folder path="/rpiHomeWWW/.settings"/>
+        <file path="/rpiHomeWWW/charts/chart_temp.php"/>
+        <file path="/rpiHomeWWW/charts/chart_temp_data.php"/>
+        <file path="/rpiHomeWWW/charts/jqwidgets-ver3.8.0.zip"/>
+        <file path="/rpiHomeWWW/charts/readme_charts.txt"/>
+        <folder path="/rpiHomeWWW/charts/styles"/>
+        <folder path="/rpiHomeWWW/db"/>
+        <folder path="/rpiHomeWWW/images"/>
+        <folder path="/rpiHomeWWW/js"/>
+        <folder path="/rpiHomeWWW/styles"/>
+        <folder path="/rpiHomeWWW/webPHPtest"/>
     </selectedElements>
 </rexpfd>
