@@ -16,9 +16,10 @@ require_once 'set_config_vars.php';
 <title>RPiHome</title>
 <link rel="stylesheet" type="text/css" href="./styles/rpihome.css">
 
+<script type="text/javascript" src="./js/scripts.js"></script>
 
 <body>
-	<script type="text/javascript" src="./js/scripts.js"></script>
+
 
 	<div id="header">
 		<h1>RPiHome</h1>

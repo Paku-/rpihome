@@ -45,7 +45,7 @@ function changeSection(secID) {
 		break;
 	case 3:
 		ajaxRequest.open("GET", "config.php", true);
-		break;		
+		break;
 	default:
 	}
 
@@ -85,7 +85,7 @@ function showPins(sort, pinID, field) {
 	ajaxRequest.open("GET", "get_pins.php" + queryString, true);
 	ajaxRequest.send(null);
 }
-//Paku - fill in config page
+// Paku - fill in config page
 function showConfig(updateConfig, debugMode, showDisabledPins) {
 	var ajaxRequest = getAjaxRequest();
 

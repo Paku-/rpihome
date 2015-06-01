@@ -37,11 +37,11 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 ##Web server
-You may use any web server suitable for PHP applications, like Apache or lighttpd (tested). PHP5 support has to be installed as well.
+You may use any web server suitable for PHP applications, like Apache or lighttpd (tested). PHP5 support including PDO DB abstraction layer has to be installed as well.
 ```
-sudo apt-get install php5 php5-mysql lighttpd
+sudo apt-get install php5 php5-mysql php-pdo lighttpd
 ```
-Test if your web server is running by coping the 'index.php' file into web server root folder
+Configure modules given above then test if your web server is running by coping the 'index.php' file into web server root folder.
 You will find the file inside the following repository location: 
 ```
 rpihome/rpiHomeWWW/webPHPtest/index.php
