@@ -102,7 +102,7 @@ function setChart(selector) {
 				},
 				// Uncomment the line below to render the selector in a separate
 				// container
-				// renderTo: $('#selectorContainer'),
+				renderTo: $('#ChartSelectorContainer'),
 				backgroundColor : 'white',
 				size : 150,
 				gridLines : {
