@@ -114,7 +114,7 @@ function setChart(selector) {
 		valueAxis : {
 			visible : true,
 			title : {
-				text : 'Temperature [°C]'
+				text : 'Temperature [\°C]'
 			},
 			tickMarks : {
 				color : '#BCBCBC'
@@ -127,7 +127,7 @@ function setChart(selector) {
 				// emptyPointsDisplay: 'skip',
 				// legendFormatFunction: legendFormatFunction,
 				dataField : 'Temp',
-				displayText : 'Temperature [°C]'
+				displayText : 'Temperature [\°C]'
 
 			} ]
 		} ]
