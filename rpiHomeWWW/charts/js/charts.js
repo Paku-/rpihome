@@ -45,8 +45,8 @@ function setChart(selector) {
 			// textRotationAngle: 90,
 			dataField : 'Time',
 			formatFunction : function(value) {
-				return $.jqx.dataFormat
-						.formatdate(value, 'dd/MM/yyyy HH:mm:ss');
+				//return $.jqx.dataFormat.formatdate(value, 'dd/MM/yyyy HH:mm:ss');
+				return $.jqx.dataFormat.formatdate(value, 'HH:mm:ss');
 			},
 			type : 'date',
 			baseUnit : 'hour',
@@ -74,7 +74,7 @@ function setChart(selector) {
 					y : -30
 				}
 			},
-
+/*
 			formatFunction : function(value, dataIndex) {
 
 				var hours = value.getHours();
@@ -93,7 +93,7 @@ function setChart(selector) {
 				return hours + ":" + minutes + ":" + seconds;
 
 			},
-
+*/
 			rangeSelector : {
 				serieType : 'area',
 				padding : { /* left: 0, right: 0, */
