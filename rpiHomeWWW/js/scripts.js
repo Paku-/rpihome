@@ -64,7 +64,7 @@ function showLog() {
 
 	ajaxRequest.onreadystatechange = function() {
 		if (ajaxRequest.readyState == 4) {
-			var ajaxDisplay = document.getElementById('log');
+			var ajaxDisplay = document.getElementById('section');
 			ajaxDisplay.innerHTML = ajaxRequest.responseText;
 		}
 	};
@@ -86,7 +86,7 @@ function showPins(sort, pinID, field) {
 	// Create a function that will receive data sent from the server
 	ajaxRequest.onreadystatechange = function() {
 		if (ajaxRequest.readyState == 4) {
-			var ajaxDisplay = document.getElementById('pins');
+			var ajaxDisplay = document.getElementById('section');
 			ajaxDisplay.innerHTML = ajaxRequest.responseText;
 		}
 	};
@@ -104,7 +104,7 @@ function showConfig(updateConfig, debugMode, showDisabledPins) {
 	// Create a function that will receive data sent from the server
 	ajaxRequest.onreadystatechange = function() {
 		if (ajaxRequest.readyState == 4) {
-			var ajaxDisplay = document.getElementById('config');
+			var ajaxDisplay = document.getElementById('section');
 			ajaxDisplay.innerHTML = ajaxRequest.responseText;
 		}
 	};

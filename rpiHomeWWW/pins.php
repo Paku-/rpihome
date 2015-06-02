@@ -49,7 +49,7 @@ try {
 	print "</ul></div>";
 	
 	
-	
+	print "<div id=\"pins\">";	
 	
 	// Build Result String.
 	// Important %2B0 is url encoded "+0" string passed to mySQL to force numerical varchars to be sorted as true numbers.
@@ -113,7 +113,9 @@ try {
 	var_dump ( $e->getMessage () );
 	print '</pre>';
 }
+
+print "</div>";
+
 ?>
 
-</div>
 

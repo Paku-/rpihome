@@ -23,13 +23,6 @@ $qry_result->execute ( array (
 
 checkQueryResult ( $qry_result );
 
-// if (! $qry_result) {
-// $message = '<pre>Invalid query: ' . $db->error . '</pre>';
-// $message .= '<pre>Whole query: ' . $query . '</pre>';
-// die ( $message );
-// }
-
-
 print "<div id=\"menu\">";
 print "<ul class=\"menu\">";
 
@@ -43,7 +36,7 @@ print "</form></li>";
 
 print "</ul></div>";
 
-print "<div id='log'>";
+print "<div id=\"log\">";
 
 // Build Result String.
 $display_string = "<table class=\"log\">";
@@ -73,6 +66,7 @@ if ($rowConfig ['debugMode']) {
 	print '<pre>Range Set: ' . $id1 . '<->' . $id2 . '</pre>';
 	print '<pre>Select: ' . $query . '</pre>';
 }
+
+print "</div>";
 ?>
 
-</div>
