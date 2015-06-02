@@ -22,7 +22,7 @@ require_once 'set_config_vars.php';
 
 
 	<div id="header">
-		<h1>RPiHome</h1>
+		<h1>rpiHome</h1>
 	</div>
 	<div id="nav">
 

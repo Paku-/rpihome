@@ -4,10 +4,10 @@ function getAjaxRequest() {
 	var ajaxRequest;
 
 	try {
-		// Opera 8.0+, Firefox, Safari
+		// most new browsers
 		ajaxRequest = new XMLHttpRequest();
 	} catch (e) {
-		// Internet Explorer Browsers
+		// older Internet Explorer Browsers
 		try {
 			ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
 		} catch (e) {
@@ -38,20 +38,25 @@ function changeSection(secID) {
 
 	switch (secID) {
 	case 1:
-		ajaxRequest.open("GET", "pins.php?sort=BCM", true);
+		query = "pins.php?sort=BCM";
 		break;
 	case 2:
-		ajaxRequest.open("GET", "log.php?id1=0&id2=99999", true);
+		query = "log.php?id1=0&id2=99999";
 		break;
 	case 3:
-		ajaxRequest.open("GET", "config.php", true);
+		query = "config.php?";
 		break;
 	default:
 	}
 
+	//debug IE caching state
+	//console.log(ajaxRequest.msCaching);
+
+	ajaxRequest.open("GET", query + random_mark(), true);
 	ajaxRequest.send(null);
 
 }
+
 
 // Paku - change the log table content
 function showLog() {
@@ -63,12 +68,16 @@ function showLog() {
 			ajaxDisplay.innerHTML = ajaxRequest.responseText;
 		}
 	};
+	
 	var id1 = document.getElementById('id1').value;
 	var id2 = document.getElementById('id2').value;
+	
 	var queryString = "?id1=" + id1 + "&id2=" + id2;
-	ajaxRequest.open("GET", "get_log.php" + queryString, true);
+	
+	ajaxRequest.open("GET", "log.php" + queryString+random_mark(), true);
 	ajaxRequest.send(null);
 }
+
 
 // Paku - change the PINs' table content
 function showPins(sort, pinID, field) {
@@ -82,9 +91,12 @@ function showPins(sort, pinID, field) {
 		}
 	};
 	var queryString = "?sort=" + sort + "&id=" + pinID + "&field=" + field;
-	ajaxRequest.open("GET", "get_pins.php" + queryString, true);
+	
+	ajaxRequest.open("GET", "pins.php" + queryString+random_mark(), true);
 	ajaxRequest.send(null);
 }
+
+
 // Paku - fill in config page
 function showConfig(updateConfig, debugMode, showDisabledPins) {
 	var ajaxRequest = getAjaxRequest();
@@ -99,6 +111,19 @@ function showConfig(updateConfig, debugMode, showDisabledPins) {
 
 	var queryString = "?updateConfig=" + updateConfig + "&debugMode="
 			+ debugMode + "&showDisabledPins=" + showDisabledPins;
-	ajaxRequest.open("GET", "get_config.php" + queryString, true);
+	
+	ajaxRequest.open("GET", "config.php" + queryString+random_mark(), true);
 	ajaxRequest.send(null);
 }
+
+
+/*
+ * other utility functions
+ */
+
+//IE local caching disabled
+function random_mark(){
+	return "&ticker=" + Math.random();
+}
+
+
