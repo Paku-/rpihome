@@ -1,4 +1,3 @@
-<div id='pins'>
 <?php
 require_once ('set_config_vars.php');
 
@@ -43,7 +42,14 @@ try {
 	checkQueryResult($qry_result);
 	
 	// Refresh using current sort order.
-	print "<a href=\"#\" onclick=\"showPins('" . urlencode ( $sort ) . "')\">Refresh</a>";
+	
+	print "<div id=\"menu\">";
+	print "<ul class=\"menu\">";
+	print "<li class=\"menu\"><a href=\"#\" onclick=\"showPins('" . urlencode ( $sort ) . "')\">Refresh</a></li>";		
+	print "</ul></div>";
+	
+	
+	
 	
 	// Build Result String.
 	// Important %2B0 is url encoded "+0" string passed to mySQL to force numerical varchars to be sorted as true numbers.

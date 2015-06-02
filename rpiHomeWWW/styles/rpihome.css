@@ -4,6 +4,15 @@
 	text-align: center;
 	padding: 5px;
 	width: 95%;
+	margin: 0 auto;	
+}
+
+#menu {
+	line-height: 30px;
+	text-align: center;
+	padding: 5px;
+	width: 50%;
+	margin: 0 auto;
 }
 
 #nav {
@@ -11,14 +20,15 @@
 	background-color: #f8f8f8;
 	text-align: center;
 	padding: 5px;
-	width: 95%;
+	width: 80%;	
+	margin: 0 auto;	
 }
 
+
 #section {
-	float: left;
 	padding: 5px;
-	text-align: center;
-	width: 95%;
+	text-align: center;	
+	margin: 0 auto;	
 }
 
 #footer {
@@ -28,6 +38,7 @@
 	text-align: center;
 	width: 95%;
 	padding: 5px;
+	margin: 0 auto;	
 }
 
 h1 {
@@ -45,6 +56,16 @@ p {
 a, td {
 	font-size: 200%;
 }
+
+
+form {
+  font-size: 200%;
+}
+
+input {
+  font-size: 80%;
+}
+
 
 body {
 	color: navy;
@@ -76,6 +97,19 @@ ul.nav {
 }
 
 li.nav {
+	display: inline;
+	padding: 10px;
+}
+
+
+ul.menu {
+	list-style-type: none;
+	display: inline;	
+	margin: 0;
+	padding: 0;
+}
+
+li.menu {
 	display: inline;
 	padding: 10px;
 }

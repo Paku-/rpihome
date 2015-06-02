@@ -1,4 +1,3 @@
-<div id='log'>
 <?php
 require_once ('set_config_vars.php');
 
@@ -30,13 +29,21 @@ checkQueryResult ( $qry_result );
 // die ( $message );
 // }
 
-print "<a href=\"#\" onclick=\"showLog()\">Refresh</a>";
 
+print "<div id=\"menu\">";
+print "<ul class=\"menu\">";
+
+print "<li class=\"menu\"><a href=\"#\" onclick=\"showLog()\">Refresh</a></li>";
+
+print "<li class=\"menu\">";
 print "<form name=\"Ranges\">ID Range: ";
 print "<input type=\"text\" id=\"id1\" value=\"" . $id1 . "\"onchange=\"showLog()\" size=\"5\" />";
 print "<input type=\"text\" id=\"id2\" value=\"" . $id2 . "\"onchange=\"showLog()\" size=\"5\" /> <br />";
+print "</form></li>";
 
-print "</form>";
+print "</ul></div>";
+
+print "<div id='log'>";
 
 // Build Result String.
 $display_string = "<table class=\"log\">";
