@@ -8,21 +8,6 @@
 #ifndef SOURCE_RPIHOME_INCLUDE_RPIHOME_H_
 #define SOURCE_RPIHOME_INCLUDE_RPIHOME_H_
 
-/*
- * Define your mySQL DB server details here
- */
-#define MYSQL_SERVER "tcp://127.0.0.1:3306"
-#define DB_USER "user"
-#define DB_PASS "pass"
-#define DB_NAME "rpihome"
-
-/*
- * Define your OneWire bus-master file name here
- */
-#define TEMP_SENSOR_FILE "/sys/bus/w1/devices/10-000802b59f3f/w1_slave"
-#define W1_MASTER_FILE "/sys/devices/w1_bus_master1/w1_master_slaves/"
-
-
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -45,21 +30,40 @@
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
 
+/*
+ * Define your mySQL DB server details here
+ */
+#define MYSQL_SERVER "tcp://127.0.0.1:3306"
+#define DB_USER "user"
+#define DB_PASS "pass"
+#define DB_NAME "rpihome"
 
-using namespace std;
+/*
+ * Define your OneWire bus-master files name.
+ * Usually you do not have to change this lines!
+ */
+
+#define W1_MASTER_FILE 		"/sys/devices/w1_bus_master1/w1_master_slaves"
+#define W1_SENSORS_FOLDER 	"/sys/bus/w1/devices/"
+#define W1_SENSORS_FILE 	"/w1_slave"
+
+//using namespace std;
 
 const size_t SUCCESS = 0;
 const size_t ERROR_IN_COMMAND_LINE = 1;
 const size_t ERROR_UNHANDLED_EXCEPTION = 2;
 const size_t SUCCESS_HELP_ONLY = 3;
 
-#define SEVERITY_LOW  0
-#define SEVERITY_MID  1
-#define SEVERITY_HIGH 2
-#define SEVERITY_TEMP 3 //temperature forced logging
+#define ACTION_MESSAGE_LOW  		0 //source message with severity LOW
+#define ACTION_MESSAGE_MID  		1 //source message with severity MID
+#define ACTION_MESSAGE_HIGH 		2 //source message with severity HIGH
+#define ACTION_TEMP_DATA 			3 //temperature sensor data
+#define ACTION_RELAY_ON 			4 //relays action ON
+#define ACTION_RELAY_OFF 			5 //relays action OFF
 
-#define SOURCE_SYS  "SYS"
-#define SOURCE_TEMP "TEMP"
+#define SOURCE_SYSTEM  	"SYS"
+#define SOURCE_RELAY  	"RELAY"
+#define SOURCE_TEMP 	"TEMP"
 
 #define TITLE "rpiHomeApp - RaspberryPi Remote Control For Home Appliances by Paku 2014,2015"
 
@@ -114,7 +118,7 @@ public:
 
 	void store_args(args_s args);
 
-	int log(int severity,const std::string &source, const std::string &message);
+	int log(int action, const std::string &source, const std::string &message);
 
 	void sqlException(sql::SQLException &e);
 };

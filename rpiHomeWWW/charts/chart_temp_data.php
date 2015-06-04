@@ -13,9 +13,8 @@ if (!is_numeric ( $hours )) {
 
 //get temp sensor data
 //$query = "SELECT time,data FROM log WHERE severity=3 AND time>CURDATE()- INTERVAL 1 DAY;";
-$query = "SELECT time,data FROM log WHERE severity=3 AND time>NOW()- INTERVAL :hours HOUR;";
+$query = "SELECT time,message FROM log WHERE action=3 AND source LIKE 'TEMP_28%' AND time>NOW()- INTERVAL :hours HOUR;";
 
-//$query = "SELECT time,data FROM log WHERE severity=3";
 
 // Execute query
 $qry_result = $db->prepare ( $query );
@@ -31,7 +30,7 @@ while ( $row = $qry_result->fetch ( PDO::FETCH_ASSOC ) ) {
 	$sensor[] = array(
 			'Time' => $row['time'],
 			//divide by 1000 for true centigrade temp. scale
-			'Temp' => $row['data']/1000
+			'Temp' => $row['message']/1000
 	);
 }
 

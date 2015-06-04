@@ -43,8 +43,9 @@ $display_string = "<table class=\"log\">";
 $display_string .= "<tr>";
 $display_string .= "<th>ID</th>";
 $display_string .= "<th>Time</th>";
-$display_string .= "<th>Severity</th>";
-$display_string .= "<th>Entry</th>";
+$display_string .= "<th>Source</th>";
+$display_string .= "<th>Action</th>";
+$display_string .= "<th>Message</th>";
 $display_string .= "</tr>";
 
 // Insert a new row in the table for each result returned.
@@ -52,8 +53,9 @@ while ( $row = $qry_result->fetch ( PDO::FETCH_ASSOC ) ) {
 	$display_string .= "<tr>";
 	$display_string .= "<td>" . $row ['id'] . "</td>";
 	$display_string .= "<td>" . $row ['time'] . "</td>";
-	$display_string .= "<td>" . $row ['severity'] . "</td>";
-	$display_string .= "<td>" . $row ['data'] . "</td>";
+	$display_string .= "<td>" . $row ['source'] . "</td>";	
+	$display_string .= "<td>" . $row ['action'] . "</td>";
+	$display_string .= "<td>" . $row ['message'] . "</td>";
 	$display_string .= "</tr>";
 }
 

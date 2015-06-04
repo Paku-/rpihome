@@ -77,8 +77,7 @@ int rpiHome::getBoardRevision() {
 
 int rpiHome::storeBoardRevision() {
 
-
-	sql::PreparedStatement  *prep_stmt;
+	sql::PreparedStatement *prep_stmt;
 
 	prep_stmt = con->prepareStatement("UPDATE config SET boardRev = ? WHERE configVersion = 1;");
 
@@ -87,26 +86,24 @@ int rpiHome::storeBoardRevision() {
 
 	delete prep_stmt;
 
+	/*
+	 * std statment version
 
-/*
- * std statment version
+	 sql::Statement *stmt;
 
-	sql::Statement *stmt;
+	 sql::SQLString query = "Update config set boardRev = " + boost::lexical_cast<std::string>(getBoardRevision()) + ";";
 
-	sql::SQLString query = "Update config set boardRev = " + boost::lexical_cast<std::string>(getBoardRevision()) + ";";
+	 stmt = con->createStatement();
+	 stmt->execute(query);
 
-	stmt = con->createStatement();
-	stmt->execute(query);
+	 delete stmt;
 
-	delete stmt;
-
-*/
+	 */
 
 	if (args.verbose) {
 		cout << "Board Revision set to: ";
 		cout << getBoardRevision() << endl;
 	}
-
 
 	return EXIT_SUCCESS;
 
@@ -164,7 +161,7 @@ int rpiHome::setOutputPins() {
 		tempPIN = changedPINs.front();
 		changedPINs.pop();
 		digitalWrite(tempPIN[0], tempPIN[1] ? HIGH : LOW);
-		log(SEVERITY_LOW, SOURCE_SYS,str(boost::format("PIN %1% %2%") % physPinToGpio(tempPIN[0]) % (tempPIN[1] ? "ON" : "OFF")));
+		log((tempPIN[1] ? ACTION_RELAY_ON : ACTION_RELAY_OFF), SOURCE_RELAY, str(boost::format("PIN %1% %2%") % physPinToGpio(tempPIN[0]) % (tempPIN[1] ? "ON" : "OFF")));
 
 	}
 
@@ -228,64 +225,107 @@ int rpiHome::getTemps() {
 
 	if (args.termo) {
 
-		//sensor file name goes here !!!
-		std::ifstream sensor(TEMP_SENSOR_FILE);
-		std::stringstream buffer;
+		//open OneWire driver clients file to get sensors IDs
+		std::ifstream w1_master_file(W1_MASTER_FILE);
 
-		buffer << sensor.rdbuf();
+		if (w1_master_file) {
 
-		std::string str = buffer.str();
-		boost::trim(str);
+			std::string sensor_id_str;
+			std::vector<std::string> sensors_vector;
 
-		std::vector<std::string> strs;
-		boost::split(strs, str, boost::is_any_of("="));
+			//read sensors lines
+			while (std::getline(w1_master_file, sensor_id_str)) {
+				sensors_vector.push_back(sensor_id_str);
+			}
 
-		/*
-		 * debug output - last
-		 for (auto &i : strs) {
-		 std::cout << "<" << i << "> " << std::endl;
-		 }
-		 */
+			//read each sensor file
+			for (auto &curr_sensor_id : sensors_vector) {
 
-		/*
-		 * same but using tokenizer
-		 *
-		 typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+				//  debug output - sensors IDs
+				//std::cout << "<" << curr_sensor_id << "> " << std::endl;
 
-		 boost::char_separator<char> sep("=");
-		 tokenizer tokens(str, sep);
+				std::ifstream sensor_file(W1_SENSORS_FOLDER + curr_sensor_id + W1_SENSORS_FILE);
 
-		 std::cout << "Temps ON" << endl;
+				if (sensor_file) {
 
-		 for (tokenizer::iterator tok_iter = tokens.begin(); tok_iter != tokens.end(); ++tok_iter)
-		 std::cout << "<" << *tok_iter << "> ";
-		 std::cout << "\n";
-		 */
+					std::stringstream buffer;
+					buffer << sensor_file.rdbuf();
 
-		//put last element into log table as it's a temperature from the sensor.
-		log(SEVERITY_TEMP, SOURCE_TEMP+std::string("1"), strs.back());
+					std::string str = buffer.str();
+					boost::trim(str);
 
-		if (args.verbose) {
-			std::cout << SOURCE_TEMP+std::string("1: ") << strs.back() << endl;
+					std::vector<std::string> strs;
+					boost::split(strs, str, boost::is_any_of("="));
+
+					//put last element into log table as it's a temperature from the sensor.
+					log(ACTION_TEMP_DATA, SOURCE_TEMP + std::string("_") + curr_sensor_id, strs.back());
+
+					if (args.verbose) {
+						std::cout << SOURCE_TEMP + std::string("_") + curr_sensor_id + ": " << strs.back() << endl;
+					}
+
+				} else {
+
+					cerr << curr_sensor_id + " sensor file could not be open!\n";
+					cerr << "Error code: " << strerror(errno);
+
+				}
+
+			}
+
+		} else {
+
+			cerr << "OneWire master driver file could not be open!\n";
+			cerr << "Error code: " << strerror(errno);
+
 		}
-
 	}
 
 	return EXIT_SUCCESS;
+
 }
 
-int rpiHome::log(int severity,const string &source, const string &message) {
+//std::stringstream w1_master_file_buff;
+//read IDs into the buffer, then string vector
+//w1_master_file_buff << w1_master_file.rdbuf();
+//std::string w1_master_str = w1_master_file_buff.str();
+//boost::trim(w1_master_str);
+//boost::split(sensors_vector, w1_master_str, boost::is_any_of("\n\r"));
 
-	//force DB logging for any severity above HIGH - like temp sensor data...
-	if (args.logger || severity > SEVERITY_HIGH) {
+/*
+ * debug output - last
+ for (auto &i : strs) {
+ std::cout << "<" << i << "> " << std::endl;
+ }
+ */
 
+/*
+ * same but using tokenizer
+ *
+ typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
 
-		sql::PreparedStatement  *prep_stmt;
+ boost::char_separator<char> sep("=");
+ tokenizer tokens(str, sep);
 
-		prep_stmt = con->prepareStatement("INSERT INTO log (severity,data)  VALUES (?, ?)");
+ std::cout << "Temps ON" << endl;
 
-		prep_stmt->setInt(1, severity);
-		prep_stmt->setString(2, message);
+ for (tokenizer::iterator tok_iter = tokens.begin(); tok_iter != tokens.end(); ++tok_iter)
+ std::cout << "<" << *tok_iter << "> ";
+ std::cout << "\n";
+ */
+
+int rpiHome::log(int action, const string &source, const string &message) {
+
+//force DB logging for any action above HIGH - like temp sensor data...
+	if (args.logger || action > ACTION_MESSAGE_HIGH) {
+
+		sql::PreparedStatement *prep_stmt;
+
+		prep_stmt = con->prepareStatement("INSERT INTO log (action,source,message)  VALUES (?, ?, ?)");
+
+		prep_stmt->setInt(1, action);
+		prep_stmt->setString(2, source);
+		prep_stmt->setString(3, message);
 		prep_stmt->execute();
 
 		delete prep_stmt;
@@ -293,16 +333,6 @@ int rpiHome::log(int severity,const string &source, const string &message) {
 	}
 
 	return EXIT_SUCCESS;
-
-	//using std. stmt.
-	//sql::SQLString insertQuery = "insert into log (severity,data) values ('" + boost::lexical_cast<std::string>(severity) + "','" + message + "');";
-	//sql::Statement *stmt;
-	//stmt = con->createStatement();
-	//stmt->execute(insertQuery);
-	//delete stmt;
-
-
-
 }
 
 void rpiHome::sqlException(sql::SQLException &e) {
