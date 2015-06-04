@@ -164,7 +164,7 @@ int rpiHome::setOutputPins() {
 		tempPIN = changedPINs.front();
 		changedPINs.pop();
 		digitalWrite(tempPIN[0], tempPIN[1] ? HIGH : LOW);
-		log(SEVERITY_LOW, str(boost::format("PIN %1% %2%") % physPinToGpio(tempPIN[0]) % (tempPIN[1] ? "ON" : "OFF")));
+		log(SEVERITY_LOW, SOURCE_SYS,str(boost::format("PIN %1% %2%") % physPinToGpio(tempPIN[0]) % (tempPIN[1] ? "ON" : "OFF")));
 
 	}
 
@@ -263,10 +263,10 @@ int rpiHome::getTemps() {
 		 */
 
 		//put last element into log table as it's a temperature from the sensor.
-		log(SEVERITY_TEMP, strs.back());
+		log(SEVERITY_TEMP, SOURCE_TEMP+std::string("1"), strs.back());
 
 		if (args.verbose) {
-			std::cout << "Temp: " << strs.back() << endl;
+			std::cout << SOURCE_TEMP+std::string("1: ") << strs.back() << endl;
 		}
 
 	}
@@ -274,7 +274,7 @@ int rpiHome::getTemps() {
 	return EXIT_SUCCESS;
 }
 
-int rpiHome::log(int severity, const string &message) {
+int rpiHome::log(int severity,const string &source, const string &message) {
 
 	//force DB logging for any severity above HIGH - like temp sensor data...
 	if (args.logger || severity > SEVERITY_HIGH) {
@@ -294,7 +294,7 @@ int rpiHome::log(int severity, const string &message) {
 
 	return EXIT_SUCCESS;
 
-	//using normal stmt.
+	//using std. stmt.
 	//sql::SQLString insertQuery = "insert into log (severity,data) values ('" + boost::lexical_cast<std::string>(severity) + "','" + message + "');";
 	//sql::Statement *stmt;
 	//stmt = con->createStatement();

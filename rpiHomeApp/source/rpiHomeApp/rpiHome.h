@@ -17,9 +17,10 @@
 #define DB_NAME "rpihome"
 
 /*
- * Define your temperature sensor file here
+ * Define your OneWire bus-master file name here
  */
 #define TEMP_SENSOR_FILE "/sys/bus/w1/devices/10-000802b59f3f/w1_slave"
+#define W1_MASTER_FILE "/sys/devices/w1_bus_master1/w1_master_slaves/"
 
 
 #include <string>
@@ -56,6 +57,9 @@ const size_t SUCCESS_HELP_ONLY = 3;
 #define SEVERITY_MID  1
 #define SEVERITY_HIGH 2
 #define SEVERITY_TEMP 3 //temperature forced logging
+
+#define SOURCE_SYS  "SYS"
+#define SOURCE_TEMP "TEMP"
 
 #define TITLE "rpiHomeApp - RaspberryPi Remote Control For Home Appliances by Paku 2014,2015"
 
@@ -110,7 +114,7 @@ public:
 
 	void store_args(args_s args);
 
-	int log(int severity, const std::string &message);
+	int log(int severity,const std::string &source, const std::string &message);
 
 	void sqlException(sql::SQLException &e);
 };
