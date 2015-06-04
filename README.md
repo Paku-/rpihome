@@ -1,11 +1,12 @@
-#RaspberryPi  based Remote Control System for home appliances
+#RaspberryPi  based Remote Control System for home appliances.
 
-The goal of this code is to build a platform to control home equipment by the remote (like web or mobile/sms) access.
+This code goal is to build a platform to control home equipment by the remote access (like web, mobile/sms or network scripts), as well as the every house real-world data collecting  (like temperature, humidity, wind speed, luminance or IR security sensors).
 
 Current implementation (v0.1) cover following functionalities:
+
 * Control over the relays module using the web GUI - this allow appliances to be controlled using the web browser.
 * Temperature collector - DS1820 chip based sensor delivers the temperature history for the location.
-* Charts - sensors (like temperature, humidity or RPi input ports state) data visualization using charts.
+* Charts for temperature visualization.
 
 ![alt tag](https://raw.github.com/Paku-/rpihome/master/docs/screenshots/relays.jpg)
 
@@ -16,7 +17,9 @@ Current implementation (v0.1) cover following functionalities:
 ##Hardware
 * RPi board
 * RPi compatible Relays board.
-* DS1820 temperature sensor.
+* DS1820 (1Wire) temperature sensor.
+
+External hardware connections are extremely easy as you may see on the pictures below.
 
 ![alt tag](https://raw.github.com/Paku-/rpihome/master/docs/screenshots/kit.jpg)
 
