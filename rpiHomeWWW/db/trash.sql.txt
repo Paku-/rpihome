@@ -1,0 +1,37 @@
+SELECT l1.id as l1id, l2.id as l2id , l1.message as l1mess , l2.message as l2mess, l1.time as l1time, l2.time as l2time FROM log l1,log l2 WHERE l2.id-l1.id=1 AND ABS(TIMESTAMPDIFF(SECOND,l2.time,l1.time))<10
+
+
+SELECT l1.id as l1id, l2.id as l2id , l1.message as l1mess , l2.message as l2mess, l1.time as l1time, l2.time as l2time, l1.source AS l1S, l2.source AS l2S FROM log l1,log l2 WHERE l1.source LIKE 'TEMP_10%' AND l2.source LIKE 'TEMP_28%' AND l2.id-l1.id=1 AND l1.action=3 AND l2.action=3 AND ABS(TIMESTAMPDIFF(SECOND,l2.time,l1.time))<10
+
+
+select q0.`time`, q0.`message`, q1.`message` from
+( select `id`, `time`, `message` from `log` where `source` = 'TEMP_10-000802b59f3f'
+) as q0
+,
+( select `id`, `time`, `message` from `log` where `source` = 'TEMP_28-021501c7b0ff'
+  ) as q1
+where 
+TIMESTAMPDIFF(MINUTE,q0.`time`,q1.`time`)=0 AND q1.id-q0.id=1;
+
+
+select q0.`time`, q0.`message`, q1.`message` from
+( select `id`, `time`, `message` from `log` where `source` = 'TEMP_10-000802b59f3f'
+) as q0
+,
+( select `id`, `time`, `message` from `log` where `source` = 'TEMP_28-021501c7b0ff'
+  ) as q1
+where 
+TIMESTAMPDIFF(MINUTE,q0.`time`,q1.`time`)=0
+and q0.`id`-q1.`id`=1
+
+
+*************
+SELECT l1.time as l1time,l1.message as l1mess, l2.message as l2mess 
+FROM log l1 JOIN log l2 ON l1.source LIKE 'TEMP_10%' AND l2.source LIKE 'TEMP_28%' 
+AND l2.id = l1.id + 1 AND l1.action = 3 AND l2.action = 3 AND ABS(TIMESTAMPDIFF(SECOND,l2.time, l1.time)) < 10  
+
+
+
+SELECT l1.time as l1time,l1.message as l1mess, l2.message as l2mess, l1.id as l1id, l2.id as l2id
+FROM log l1 JOIN log l2 ON l1.source LIKE 'TEMP_10%' AND l2.source LIKE 'TEMP_28%' 
+AND l2.id = l1.id + 1 AND ABS(TIMESTAMPDIFF(SECOND,l2.time, l1.time)) < 10;

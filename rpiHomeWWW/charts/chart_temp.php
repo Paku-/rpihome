@@ -35,7 +35,7 @@
 </head>
 
 <body>
-	<div id='Chart' style="margin: 0 auto;width: 800px">
+	<div id='Chart' style="margin: 0 auto; width: 800px">
 		<div id='jqxChart' style="width: 800px; height: 400px"></div>
 		<div id='ChartSelectorContainer' style="width: 800px; height: 150px"></div>
 	</div>

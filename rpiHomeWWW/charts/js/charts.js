@@ -1,13 +1,16 @@
-function setChart(selector) {
+function setChart(selector,period) {
 	var source = {
 		datatype : "json",
 		datafields : [ {
 			name : 'Time',
 			type : 'date'
 		}, {
-			name : 'Temp'
+			name : 'Sensor1'
+		}, {
+			name : 'Sensor2'
 		} ],
-		url : 'chart_temp_data.php?hours=48'
+		//show last x hours
+		url : 'chart_temp_data.php?hours='+48
 	};
 
 	var dataAdapter = new $.jqx.dataAdapter(source, {
@@ -24,7 +27,7 @@ function setChart(selector) {
 	// prepare jqxChart settings
 	var settings = {
 		title : "rpiHome",
-		description : "DS1820 Temperature Sensor",
+		description : "DS1820 Temperature Sensors",
 		enableAnimations : true,
 		showLegend : true,
 		padding : {
@@ -45,7 +48,8 @@ function setChart(selector) {
 			// textRotationAngle: 90,
 			dataField : 'Time',
 			formatFunction : function(value) {
-				//return $.jqx.dataFormat.formatdate(value, 'dd/MM/yyyy HH:mm:ss');
+				// return $.jqx.dataFormat.formatdate(value, 'dd/MM/yyyy
+				// HH:mm:ss');
 				return $.jqx.dataFormat.formatdate(value, 'HH:mm:ss');
 			},
 			type : 'date',
@@ -74,35 +78,27 @@ function setChart(selector) {
 					y : -30
 				}
 			},
-/*
-			formatFunction : function(value, dataIndex) {
-
-				var hours = value.getHours();
-				var minutes = value.getMinutes();
-				var seconds = value.getSeconds();
-
-				if (hours < 10)
-					hours = '0' + hours;
-
-				if (minutes < 10)
-					minutes = '0' + minutes;
-
-				if (seconds < 10)
-					seconds = '0' + seconds;
-
-				return hours + ":" + minutes + ":" + seconds;
-
-			},
-*/
+			/*
+			 * formatFunction : function(value, dataIndex) {
+			 * 
+			 * var hours = value.getHours(); var minutes = value.getMinutes();
+			 * var seconds = value.getSeconds();
+			 * 
+			 * if (hours < 10) hours = '0' + hours;
+			 * 
+			 * if (minutes < 10) minutes = '0' + minutes;
+			 * 
+			 * if (seconds < 10) seconds = '0' + seconds;
+			 * 
+			 * return hours + ":" + minutes + ":" + seconds; },
+			 */
 			rangeSelector : {
 				serieType : 'area',
 				padding : { /* left: 0, right: 0, */
 					top : 20,
 					bottom : 0
 				},
-				// Uncomment the line below to render the selector in a separate
-				// container
-				renderTo: $('#ChartSelectorContainer'),
+				renderTo : $('#ChartSelectorContainer'),
 				backgroundColor : 'white',
 				size : 150,
 				gridLines : {
@@ -126,13 +122,18 @@ function setChart(selector) {
 			series : [ {
 				// emptyPointsDisplay: 'skip',
 				// legendFormatFunction: legendFormatFunction,
-				dataField : 'Temp',
-				displayText : 'Temperature [°C]'
+
+				dataField : 'Sensor1',
+				displayText : 'Sensor 1'
+
+			}, {
+				dataField : 'Sensor2',
+				displayText : 'Sensor 2'
 
 			} ]
 		} ]
 	};
-	
+
 	return settings;
-	
+
 }
