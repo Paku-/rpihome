@@ -160,8 +160,8 @@ int rpiHome::setOutputPins() {
 	while (!changedPINs.empty()) {
 		tempPIN = changedPINs.front();
 		changedPINs.pop();
-		digitalWrite(tempPIN[0], tempPIN[1] ? HIGH : LOW);
-		log((tempPIN[1] ? ACTION_RELAY_ON : ACTION_RELAY_OFF), SOURCE_RELAY, str(boost::format("PIN %1% %2%") % physPinToGpio(tempPIN[0]) % (tempPIN[1] ? "ON" : "OFF")));
+		digitalWrite((int) tempPIN[0], tempPIN[1] ? HIGH : LOW);
+		log((tempPIN[1] ? ACTION_RELAY_ON : ACTION_RELAY_OFF), SOURCE_RELAY, str(boost::format("PIN %1% %2%") % physPinToGpio((int) tempPIN[0]) % (tempPIN[1] ? "ON" : "OFF")));
 
 	}
 
@@ -234,6 +234,9 @@ int rpiHome::getTemps() {
 
 		log(ACTION_TEMP_DATA, SOURCE_TEMP + std::string("_CPU"), cpu_temp_str);
 
+		if (args.verbose) {
+			std::cout << SOURCE_TEMP + std::string("_CPU") + ": " << cpu_temp_str << endl;
+		}
 
 
 		//open OneWire driver clients file to get sensors IDs

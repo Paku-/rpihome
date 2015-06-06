@@ -49,8 +49,6 @@
 
 #define CPU_TEMP_FILE 		"/sys/class/thermal/thermal_zone0/temp"
 
-//using namespace std;
-
 const size_t SUCCESS = 0;
 const size_t ERROR_IN_COMMAND_LINE = 1;
 const size_t ERROR_UNHANDLED_EXCEPTION = 2;
