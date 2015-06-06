@@ -1,5 +1,5 @@
 /*
- * RPiHomeDaemon.cpp
+ * rpiHomeApp.cpp
 
  *
  *  Created on: 19 sty 2015

@@ -1,4 +1,4 @@
 /.metadata/*
 /RemoteSystemsTempFiles/*
-
-
+/rpiHomeApp/Release
+/rpiHomeApp/Debug

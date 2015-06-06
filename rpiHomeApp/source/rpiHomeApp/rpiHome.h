@@ -47,6 +47,8 @@
 #define W1_SENSORS_FOLDER 	"/sys/bus/w1/devices/"
 #define W1_SENSORS_FILE 	"/w1_slave"
 
+#define CPU_TEMP_FILE 		"/sys/class/thermal/thermal_zone0/temp"
+
 //using namespace std;
 
 const size_t SUCCESS = 0;

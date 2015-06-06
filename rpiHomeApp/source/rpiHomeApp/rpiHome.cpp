@@ -217,6 +217,7 @@ void rpiHome::store_args(args_s new_args) {
 
 }
 
+//parses internal CPU temperatue as well as all OneWire bus ds18s20 sensors.
 int rpiHome::getTemps() {
 
 // sensor file format for DS1820 sensor
@@ -224,6 +225,16 @@ int rpiHome::getTemps() {
 //2e 00 44 53 ff ff 0e 10 1b t=22875
 
 	if (args.termo) {
+
+		//parse CPU internal temperature
+
+		std::string cpu_temp_str;
+		std::ifstream cpu_temp_file(CPU_TEMP_FILE);
+		std::getline(cpu_temp_file, cpu_temp_str);
+
+		log(ACTION_TEMP_DATA, SOURCE_TEMP + std::string("_CPU"), cpu_temp_str);
+
+
 
 		//open OneWire driver clients file to get sensors IDs
 		std::ifstream w1_master_file(W1_MASTER_FILE);
