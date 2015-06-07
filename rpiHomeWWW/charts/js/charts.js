@@ -27,7 +27,7 @@ function setChart(selector,period) {
 	// prepare jqxChart settings
 	var settings = {
 		title : "rpiHome",
-		description : "DS1820 Temperature Sensors",
+		description : "Temperature Sensors History",
 		enableAnimations : true,
 		showLegend : true,
 		padding : {
@@ -124,11 +124,11 @@ function setChart(selector,period) {
 				// legendFormatFunction: legendFormatFunction,
 
 				dataField : 'Sensor1',
-				displayText : 'Sensor 1'
+				displayText : 'CPU Temp'
 
 			}, {
 				dataField : 'Sensor2',
-				displayText : 'Sensor 2'
+				displayText : 'One-Wire Sensor Temp'
 
 			} ]
 		} ]

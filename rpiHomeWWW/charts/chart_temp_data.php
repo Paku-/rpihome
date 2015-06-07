@@ -15,7 +15,7 @@ if (! is_numeric ( $hours )) {
 $query = "SELECT time,message FROM log WHERE action=3 AND source LIKE 'TEMP_28%' AND time>NOW()- INTERVAL :hours HOUR;";
 
 $query = "SELECT l1.time as l1time,l1.message as l1mess, l2.message as l2mess, l1.id as l1id, l2.id as l2id
-FROM log l1 JOIN log l2 ON l1.source LIKE 'TEMP_10%' AND l2.source LIKE 'TEMP_28%'
+FROM log l1 JOIN log l2 ON l1.source LIKE 'TEMP_CP%' AND l2.source LIKE 'TEMP_10%'
 AND l2.id = l1.id + 1 AND ABS(TIMESTAMPDIFF(SECOND,l2.time, l1.time)) < 10 AND l1.time>NOW()- INTERVAL :hours HOUR;";
 
 // FROM log l1 JOIN log l2 ON l1.source LIKE 'TEMP_10%' AND l2.source LIKE 'TEMP_28%'
