@@ -1,0 +1,30 @@
+language: cpp
+compiler: g++
+before_install:
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update -qq
+install:
+  - sudo apt-get install gcc-4.8 g++-4.8 -qq
+#  - g++ --version
+#  - gcc --version
+#  - cmake --version
+#install wiring Pi library
+  - git clone git://git.drogon.net/wiringPi
+  - cd wiringPi
+  - ./build
+  - cd ..
+#install boost,mySqlConnector libs  
+  - sudo apt-get install libboost-program-options-dev libboost-dev libmysqlcppconn-dev -qq
+
+script:
+  - cd rpiHomeApp
+  - mkdir build
+  - cd build
+  - CC=gcc-4.8 CXX=g++-4.8 cmake ..
+  - make
+  - ./rpiHomeApp -h
+branches:
+  only:
+    - master  
+  
+  

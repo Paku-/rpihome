@@ -50,9 +50,9 @@
 #define CPU_TEMP_FILE 		"/sys/class/thermal/thermal_zone0/temp"
 
 const size_t SUCCESS = 0;
-const size_t ERROR_IN_COMMAND_LINE = 1;
-const size_t ERROR_UNHANDLED_EXCEPTION = 2;
-const size_t SUCCESS_HELP_ONLY = 3;
+const size_t SUCCESS_HELP_ONLY = 1;
+const size_t ERROR_IN_COMMAND_LINE = 2;
+const size_t ERROR_UNHANDLED_EXCEPTION = 3;
 
 #define ACTION_MESSAGE_LOW  		0 //source message with severity LOW
 #define ACTION_MESSAGE_MID  		1 //source message with severity MID
