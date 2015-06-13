@@ -1,3 +1,4 @@
+![alt tag](https://travis-ci.org/Paku-/rpihome.svg?branch=master)
 #RaspberryPi  based Remote Control System for home appliances.
 
 This code goal is to build a platform to control home equipment by the remote access (like web, mobile/sms or network scripts), as well as the every house real-world data collecting  (like temperature, humidity, wind speed, luminance or IR security sensors).
