@@ -15,6 +15,7 @@
 #include <cstdio>
 #include <queue>
 #include <stdlib.h>
+#include <errno.h>
 
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
