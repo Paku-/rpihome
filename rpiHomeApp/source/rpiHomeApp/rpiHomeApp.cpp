@@ -19,8 +19,8 @@ int get_cmd_line_params(rpiHome* thisRPiHome, int ac, char *av[]) {
 
 	// Declare the supported options.
 	po::options_description desc("RPiHome options");
-	desc.add_options()("help,h", "this help message")("daemon,d", "run in daemon mode (not implemented)")("logger,l", "log activity into the DB")("termo,t",
-			"read and log temperature (1Wire DS18D20 temperature sensors only)")("verbose,v", "be verbose, enable stdio output messages.");
+	desc.add_options()("help,h", "this help message")("daemon,d", "run in daemon mode (not implemented)")("logger,l", "log into the DB")("termo,t",
+			"read and log temperature (1Wire DS18x20 temperature sensors only)")("verbose,v", "be verbose, enable stdio output messages.");
 
 	po::variables_map vm;
 
