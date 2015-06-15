@@ -15,8 +15,6 @@ using namespace std;
 
 int get_cmd_line_params(rpiHome* thisRPiHome, int ac, char *av[]) {
 
-	int period;
-
 	// Declare the supported options.
 	po::options_description desc("RPiHome options");
 	desc.add_options()("help,h", "this help message")("daemon,d", "run in daemon mode (not implemented)")("logger,l", "log into the DB")("termo,t",
