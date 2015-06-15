@@ -94,40 +94,19 @@ $db_DataBase = 'rpihome';
 
 ##Build the rpiHomeApp command line tool
 
-#to be continued .... shortly.
+###What is the rpiHomeApp
 
-But in very short words:
+rpiHomeApp tool is responsible for data collecting and then spowing the appropiete actions.
+It's designed as one pass tool. It means you have to run it each time you want it to manage system state.
+This way it's very open so you may call it from cron, a web server, other script or any other tool able to run system commands.
 
-install libraries:
+Here is the cron example as it's seems to be the easiest way to go.
 
-```
-sudo apt-get install  libboost-program-options-dev
-sudo apt-get install  libboost-dev
-sudo apt-get install  libmysqlcppconn-dev
-```
-
-copy rpihome/rpiHomeApp somewhere
-
-create and enter build folder
-```
-mkdir myBuild
-cd myBuild
-```
-Call cmake to configure source code, then make it.
-
-```
-cmake .. ; make
-```
-for help call
-```
-rpiHomeApp -h
-```
-
-Use CRON to call it 
+Start from editing the root crontab
 ```
 sudo crontab -e
 ```
-(every 15 seconds example)
+and put lines as below to call rpiHomeApp every 15 seconds.
 ```
 * * * * * /home/pi/rpiHomeApp -l -t >> /var/log/rpiHomeApp.log 2>&1
 * * * * * sleep 15 ; /home/pi//rpiHomeApp -l >> /var/log/rpiHomeApp.log 2>&1
@@ -135,8 +114,51 @@ sudo crontab -e
 * * * * * sleep 45 ; /home/pi/rpiHomeApp -l >> /var/log/rpiHomeApp.log 2>&1
 ```
 
+Have in mind we asked rpiHomeApp to mesure the temperature once per minute only here, while relays state will be checked out every 15 seconds.
 
+ok, but first you have to build it ...
 
+### rpiHomeApp build procedure.
 
+rpiHomeApp code is a C++ application build with some external libraries like:
 
+* wiringPi
+* boost
+* mySqlCPPConnector
+
+Code build process is tested using Travis CI. 
+So my advice is to look inside the 
+````
+.travis.yml 
+````
+file in the main folder. You will find all (step by step) commands to build rpiHomeApp there.
+
+Just a summary:
+````
+# we need g++ 4.7.2 at least 
+sudo apt-get install gcc-4.8 g++-4.8 -qq
+
+#install wiring Pi library
+git clone git://git.drogon.net/wiringPi
+cd wiringPi
+./build
+cd ..
+
+#install boost,mySqlConnector libs  
+sudo apt-get install libboost-program-options-dev libboost-dev libmysqlcppconn-dev -qq
+
+#actually build rpiHomeApp
+cd rpiHomeApp
+mkdir build
+cd build
+
+#ask cmake to use the proper compiler
+CC=gcc-4.8 CXX=g++-4.8 cmake ..
+make
+
+#test it's running
+./rpiHomeApp -h
+````
+
+You should be done with your rpiHome instalation at this point.
 
