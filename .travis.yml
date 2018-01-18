@@ -9,7 +9,8 @@ install:
 #  - gcc --version
 #  - cmake --version
 #install wiring Pi library
-  - git clone git://git.drogon.net/wiringPi
+#  - git clone git://git.drogon.net/wiringPi
+  - git clone https://github.com/WiringPi/WiringPi.git
   - cd wiringPi
   - ./build
   - cd ..
